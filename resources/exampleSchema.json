@@ -1,0 +1,23 @@
+{
+  "title": "Photo",
+  "type": "object",
+  "properties": {
+    "contentType": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    }
+  },
+  "required": ["contentType", "content"],
+  "options": {
+    "java": {
+      "className": "PhotoDTO",
+      "package": "se.alerisx.mhp.directory.dto"
+    },
+    "go": {
+      "package": "directory",
+      "tags": ["json", "yaml"]
+    }
+  }
+}

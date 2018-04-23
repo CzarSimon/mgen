@@ -1,5 +1,6 @@
 {
   "title": "Photo",
+  "description": "describes photo metadata",
   "type": "object",
   "properties": {
     "contentType": {

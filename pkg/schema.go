@@ -13,6 +13,12 @@ const (
 	Javascript          = "javascript"
 )
 
+// Supported types
+const (
+	ObjectType = "object"
+	StringType = "string"
+)
+
 // A Schema describes a data entity for which source code should be genereated.
 type Schema struct {
 	Title       string                   `json:"title" yaml:"title"`

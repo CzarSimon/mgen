@@ -19,6 +19,12 @@ type Generator interface {
 // GenerateModel function signature of code generators.
 type GenerateModel func(pkg.Schema) (string, error)
 
-func makeUnrecognizedTypeError(typeName string) error {
+// typeMap is an inteface for mapping mgen supported types
+// to their target language equivalents.
+type typeMap interface {
+	Map(pkg.TypeName) string
+}
+
+func makeUnrecognizedTypeError(typeName pkg.TypeName) error {
 	return fmt.Errorf("Unsupported type: '%s'", typeName)
 }

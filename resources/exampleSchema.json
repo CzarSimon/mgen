@@ -8,16 +8,34 @@
     },
     "content": {
       "type": "string"
+    },
+    "size": {
+      "type": "int",
+      "description": "Size of the photo in bytes"
+    },
+    "dimensions": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "int"
+        },
+        "height": {
+          "type": "int"
+        },
+        "unit": {
+          "type": "string"
+        }
+      }
     }
   },
   "required": ["contentType", "content"],
   "options": {
     "java": {
       "className": "PhotoDTO",
-      "package": "se.alerisx.mhp.directory.dto"
+      "package": "com.foo.dto"
     },
     "go": {
-      "package": "directory",
+      "package": "schema",
       "tags": ["json", "yaml"]
     }
   }

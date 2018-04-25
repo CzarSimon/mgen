@@ -35,6 +35,13 @@ func setupApp() *cli.App {
 	app.Description = appDescription
 	app.Version = appVersion
 	app.Action = generateModel
+	app.Flags = []cli.Flag{
+		cli.StringFlag{
+			Name:  "out, o",
+			Usage: "Comma separated list of desired output languages.",
+			Value: "go",
+		},
+	}
 	return app
 }
 
@@ -42,11 +49,18 @@ func generateModel(c *cli.Context) error {
 	filepath := getFilepathArg(c)
 	schema, err := pkg.ReadSchema(filepath)
 	checkErr(err)
-	gen := generator.NewGo()
-	block, err := gen.Generate(schema)
-	checkErr(err)
-	fmt.Printf("%s\n", block)
+	for _, gen := range getGenerators(c, schema) {
+		block, err := gen.Generate(schema)
+		checkErr(err)
+		fmt.Printf("%s\n", block)
+	}
 	return nil
+}
+
+func getGenerators(c *cli.Context, schema pkg.Schema) []generator.Generator {
+	return []generator.Generator{
+		generator.NewGo(schema.Options[pkg.Go]),
+	}
 }
 
 func getFilepathArg(c *cli.Context) string {
